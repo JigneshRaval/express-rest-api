@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>CSS Baseline Grid</title>
+
+    <!-- FAVICON -->
+    <link rel='shortcut icon' type='image/x-icon' href='images/favicon.png' />
+
+    <!-- Fonts -->
+    <link href='http://fonts.googleapis.com/css?family=Lato&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
+
+    <!-- jQuery -->
+    <!--<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>-->
+    <script src="./assets/js/jquery-3.1.1.js"></script>
+
+    <!-- Bootstrap 4
+			<link rel="stylesheet" href="css/bootstrap.css">
+			<script src="js/bootstrap-4.js"></script>
+		-->
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font: 100%/1.5 -apple-system, BlinkMacSystemFont, Helvetica Neue, Helvetica, Arial, sans-serif;
+            color: #222;
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 24px;
+            background: url(images/baseline-pattern-24px.png) repeat top left;
+        }
+
+        /*body:after {
+			position: absolute;
+			width: auto;
+			height: auto;
+			z-index: 9999;
+			content: '';
+			display: block;
+			pointer-events: none;
+			top: 0;
+			right: 0;
+			bottom: 0;
+			left: 0;
+			background: url(images/baseline-pattern-24px.png) repeat top left;
+			}
+			body:active:after {
+			display: none;
+			}*/
+
+        /* Baseline Grid Calculation
+			-----------------------------------*/
+
+        h1 {
+            font-size: 4.5em;
+            /* 72/16 = 4.5 */
+            line-height: 1;
+            margin: 0.6666666666666667em 0;
+        }
+
+        h2 {
+            font-size: 3em;
+            /* we need 48px font-size so 48 / 16 = 3em */
+            line-height: 1;
+            margin: 0.5em 0;
+            /* Now H2's font-size is 48. we need 24px top/bottom margin so 24/48 = 0.5em */
+        }
+
+        p {
+            font-size: 0.875em;
+            /* we need font-size 14px so 14 / 16 = 0.875em */
+            line-height: 1.714285714285714;
+            /* we need line height 24px so 24 / 14 ( current font-size of P tag ) = 1.714285714285714em */
+            margin-bottom: 1.714285714285714em;
+        }
+
+        em,
+        strong,
+        code {
+            font-size: 1em;
+            /* As if em and strong is inside P tag which has font size 14px so 14 ( Our traget or required font size ) / 14 ( P tag font-size ) = 1em; */
+            line-height: 1.714285714285714;
+        }
+    </style>
+
+</head>
+
+<body>
+    <p>Hi, Express</p>
+    <a href="javascript:;" id="carModels">Car Models</a>
+    <a href="cars">Cars</a>
+    <a href="cars/brands">Car Brands</a>
+
+    <pre id="div1">Result</pre>
+
+    <script>
+        $(document).ready(function () {
+            $('#carModels').on('click', function () {
+                $.ajax({
+                    url: "/cars/models",
+                    success: function (result) {
+                        $("#div1").text(result);
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+
+</html>
